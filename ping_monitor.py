@@ -122,33 +122,7 @@ class PingMonitor:
         else:
             print(f"{Fore.RED}[{timestamp}] ✗ {result['host']} - {result.get('error', 'Timeout')}{Style.RESET_ALL}")
 
-    def display_statistics(self):
-        """Display comprehensive statistics"""
-        print(f"\n{Fore.CYAN}{'='*60}")
-        print(f"{Fore.YELLOW}📊 STATISTICS SUMMARY")
-        print(f"{Fore.CYAN}{'='*60}")
-        
-        print(f"{Fore.WHITE}📦 Packets: Sent={self.stats['sent']} | Received={self.stats['received']} | Lost={self.stats['lost']}")
-        print(f"{Fore.WHITE}📉 Loss: {self.stats.get('loss_percent', 0)}%")
-        
-        if self.stats['received'] > 0:
-            print(f"{Fore.GREEN}⏱️  Latency: Min={self.stats['min_rtt']}ms | Max={self.stats['max_rtt']}ms | Avg={self.stats['avg_rtt']}ms")
-        
-        # Quality rating
-        loss = self.stats.get('loss_percent', 100)
-        if loss == 0 and self.stats['avg_rtt'] < 50:
-            quality = f"{Fore.GREEN}EXCELLENT"
-        elif loss < 5 and self.stats['avg_rtt'] < 100:
-            quality = f"{Fore.YELLOW}GOOD"
-        elif loss < 20:
-            quality = f"{Fore.MAGENTA}POOR"
-        else:
-            quality = f"{Fore.RED}CRITICAL"
-        
-        print(f"{Fore.WHITE}🎯 Connection Quality: {quality}{Style.RESET_ALL}")
-        print(f"{Fore.CYAN}{'='*60}{Style.RESET_ALL}")
-    
-    def save_log(self):
+  def save_log(self):
         """Save results to JSON log file"""
         log_entry = {
             'timestamp': datetime.now().isoformat(),
