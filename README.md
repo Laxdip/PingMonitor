@@ -83,6 +83,19 @@ python ping_monitor.py google.com --csv report.csv --json summary.json
 **Continuous monitor live RTT, alerts, statistics and heatmap:**
 <img src="screenshots/monitor.png" width="700"/>
 
+**Statistics block (every 10 pings):**
+```
+  Packets   : Sent=10  Received=9  Lost=1  Loss=10.0%
+  Uptime    : 90.0%
+  RTT (ms)  : Min=17.1  Avg=22.4  Max=134.2  StdDev=8.3
+  Percentile: P50=19.2  P90=88.1  P99=131.0
+  Jitter    : 4.6 ms
+  Quality   : FAIR
+  Trend     : [____,,--==++**##@@@@**==--,,____,,--==]
+  Heatmap   : [##########.#########]
+```
+**Quality levels:** `EXCELLENT` / `GOOD` / `FAIR` / `POOR` / `CRITICAL`
+
 ## Hosts File Format
 
 Plain text, one host per line. Lines starting with `#` are ignored.
@@ -96,22 +109,6 @@ cloudflare.com
 ```
 Multi host parallel mode summary table with per host quality rating:
 <img src="screenshots/target.png" width="700"/>
-
----
-
-**Statistics block (every 10 pings):**
-```
-  Packets   : Sent=10  Received=9  Lost=1  Loss=10.0%
-  Uptime    : 90.0%
-  RTT (ms)  : Min=17.1  Avg=22.4  Max=134.2  StdDev=8.3
-  Percentile: P50=19.2  P90=88.1  P99=131.0
-  Jitter    : 4.6 ms
-  Quality   : FAIR
-  Trend     : [____,,--==++**##@@@@**==--,,____,,--==]
-  Heatmap   : [##########.#########]
-```
-
-**Quality levels:** `EXCELLENT` / `GOOD` / `FAIR` / `POOR` / `CRITICAL`
 
 ---
 
