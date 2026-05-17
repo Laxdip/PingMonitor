@@ -75,9 +75,13 @@ python ping_monitor.py google.com --csv report.csv --json summary.json
 | `--csv` | Auto-export results to CSV on exit | — |
 | `--json` | Auto-export summary to JSON on exit | — |
 
-<img src="screenshots/help.png" width="500"/>
+<img src="screenshots/help.png" width="600"/>
 
 ---
+## Output
+
+**Continuous monitor live RTT, alerts, statistics and heatmap:**
+<img src="screenshots/monitor.PNG" width="700"/>
 
 ## Hosts File Format
 
@@ -90,6 +94,8 @@ google.com
 cloudflare.com
 192.168.1.1
 ```
+Multi host parallel mode summary table with per host quality rating:
+<img src="screenshots/target.png" width="700"/>
 
 ---
 
