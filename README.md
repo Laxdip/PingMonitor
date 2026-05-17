@@ -1,6 +1,6 @@
 # Advanced Ping Monitor
 
-**Professional network diagnostics tool**  
+**Professional network diagnostics tool**
 
 ---
 
@@ -41,6 +41,7 @@ pip install pythonping colorama
 ```bash
 python ping_monitor.py
 ```
+
 <img src="screenshots/menu.png" width="600"/>
 
 ### Command-line (non-interactive)
@@ -78,12 +79,15 @@ python ping_monitor.py google.com --csv report.csv --json summary.json
 <img src="screenshots/help.png" width="600"/>
 
 ---
+
 ## Output
 
-**Continuous monitor live RTT, alerts, statistics and heatmap:**
+**Continuous monitor — live RTT, alerts, statistics and heatmap:**
+
 <img src="screenshots/monitor.png" width="700"/>
 
 **Statistics block (every 10 pings):**
+
 ```
   Packets   : Sent=10  Received=9  Lost=1  Loss=10.0%
   Uptime    : 90.0%
@@ -94,7 +98,10 @@ python ping_monitor.py google.com --csv report.csv --json summary.json
   Trend     : [____,,--==++**##@@@@**==--,,____,,--==]
   Heatmap   : [##########.#########]
 ```
+
 **Quality levels:** `EXCELLENT` / `GOOD` / `FAIR` / `POOR` / `CRITICAL`
+
+---
 
 ## Hosts File Format
 
@@ -107,7 +114,9 @@ google.com
 cloudflare.com
 192.168.1.1
 ```
-Multi host parallel mode summary table with per host quality rating:
+
+**Multi-host parallel mode — summary table with per-host quality rating:**
+
 <img src="screenshots/target.png" width="700"/>
 
 ---
@@ -121,7 +130,13 @@ Multi host parallel mode summary table with per host quality rating:
 | `ping_summary.json` | Per-host aggregated stats |
 
 ---
+
 ## Author
+
 Prasad
+
+---
+
 ## License
-MIT License - free to use, modify, and distribute.
+
+MIT License — free to use, modify, and distribute.
