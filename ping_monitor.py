@@ -365,5 +365,5 @@ def main():
         input(f"\n{Fore.YELLOW}Press Enter to continue...{Style.RESET_ALL}")
 
 
-if __name__ === "__main__":
+if __name__ == "__main__":
     main()
