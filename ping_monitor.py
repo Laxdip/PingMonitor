@@ -296,3 +296,72 @@ class PingMonitor:
             print(f"{Fore.RED}✗ Export failed: {e}{Style.RESET_ALL}")
 
 
+def main():
+    """Main CLI interface"""
+    monitor = PingMonitor()
+    monitor.print_banner()
+    
+    while True:
+        print(f"\n{Fore.CYAN}📌 MAIN MENU")
+        print(f"{Fore.WHITE}1. Continuous Ping Monitor (Real-time)")
+        print(f"2. Single Ping Test (4 pings)")
+        print(f"3. Custom Ping Count")
+        print(f"4. Monitor Multiple Hosts (from file)")
+        print(f"5. Set Alert Threshold")
+        print(f"6. Export Report to CSV")
+        print(f"7. View Last Results")
+        print(f"0. Exit")
+        
+        choice = input(f"\n{Fore.GREEN}➜ Select option: {Style.RESET_ALL}").strip()
+        
+        if choice == '1':
+            host = input("Enter host/IP to monitor (e.g., google.com or 8.8.8.8): ").strip()
+            interval = input("Interval between pings (seconds) [default=1]: ").strip()
+            interval = int(interval) if interval else 1
+            monitor.continuous_monitor(host, interval)
+            
+        elif choice == '2':
+            host = input("Enter host/IP: ").strip()
+            monitor.single_ping(host, 4)
+            
+        elif choice == '3':
+            host = input("Enter host/IP: ").strip()
+            count = int(input("Number of pings: ").strip())
+            monitor.single_ping(host, count)
+            
+        elif choice == '4':
+            filepath = input("Enter hosts file path (e.g., targets.txt): ").strip()
+            interval = input("Interval between rounds (seconds) [default=5]: ").strip()
+            interval = int(interval) if interval else 5
+            monitor.monitor_multiple_hosts(filepath, interval)
+            
+        elif choice == '5':
+            threshold = int(input("Enter alert threshold in ms (e.g., 100): ").strip())
+            monitor.set_alert_threshold(threshold)
+            
+        elif choice == '6':
+            filename = input("Enter CSV filename [default=ping_report.csv]: ").strip()
+            filename = filename if filename else "ping_report.csv"
+            monitor.export_csv(filename)
+            
+        elif choice == '7':
+            if monitor.results:
+                print(f"\n{Fore.CYAN}Last 10 results:{Style.RESET_ALL}")
+                for result in monitor.results[-10:]:
+                    if result['success']:
+                        print(f"  ✓ {result['host']} - {result['rtt']}ms")
+                    else:
+                        print(f"  ✗ {result['host']} - Failed")
+            else:
+                print(f"{Fore.YELLOW}No results yet{Style.RESET_ALL}")
+                
+        elif choice == '0':
+            print(f"{Fore.GREEN}👋 Goodbye!{Style.RESET_ALL}")
+            break
+        
+        else:
+            print(f"{Fore.RED}Invalid option!{Style.RESET_ALL}")
+        
+        input(f"\n{Fore.YELLOW}Press Enter to continue...{Style.RESET_ALL}")
+
+
