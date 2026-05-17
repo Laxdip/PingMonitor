@@ -8,7 +8,8 @@
 
 - Real time continuous monitoring with live RTT display
 - Parallel multi host monitoring using threads
-- Host down detection and auto-recovery alerts with cooldown
+- Jitter, standard deviation, and percentile stats (P50 / P90 / P99)
+- Host down detection and auto recovery alerts with cooldown
 - Structured JSON session logs and CSV export
 - TCP fallback when ICMP is unavailable (no root required)
 - Full CLI argument support scriptable and automation friendly
