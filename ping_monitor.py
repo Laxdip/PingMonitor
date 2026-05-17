@@ -275,26 +275,6 @@ class PingMonitor:
         print(f"{Fore.GREEN}✓ Alert threshold set to {threshold}ms{Style.RESET_ALL}")
     
     def export_csv(self, filename="ping_report.csv"):
-        """Export results to CSV"""
-        try:
-            import csv
-            with open(filename, 'w', newline='') as f:
-                writer = csv.writer(f)
-                writer.writerow(['Timestamp', 'Host', 'Success', 'RTT(ms)', 'Error'])
-                
-                for result in self.results:
-                    writer.writerow([
-                        result['timestamp'],
-                        result['host'],
-                        result['success'],
-                        result['rtt'] if result['rtt'] else 'N/A',
-                        result.get('error', '')
-                    ])
-            
-            print(f"{Fore.GREEN}✓ Report exported to {filename}{Style.RESET_ALL}")
-        except Exception as e:
-            print(f"{Fore.RED}✗ Export failed: {e}{Style.RESET_ALL}")
-
 
 def main():
     """Main CLI interface"""
