@@ -702,3 +702,22 @@ def main():
     monitor = PingMonitor()
     monitor.set_alert_threshold(args.alert)
 
+    # Non-interactive mode when host or file supplied
+    if args.host or args.file:
+        Display.banner()
+        try:
+            if args.file:
+                monitor.monitor_from_file(args.file, interval=args.interval, timeout=args.timeout)
+            elif args.count == 0:
+                monitor.continuous_monitor(args.host, interval=args.interval, timeout=args.timeout)
+            else:
+                monitor.single_ping(args.host, count=args.count, timeout=args.timeout)
+        finally:
+            if args.csv:
+                monitor.export_csv(args.csv)
+            if args.json:
+                monitor.export_json(args.json)
+    else:
+        interactive_menu(monitor)
+
+
