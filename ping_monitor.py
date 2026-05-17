@@ -721,3 +721,5 @@ def main():
         interactive_menu(monitor)
 
 
+if __name__ == "__main__":
+    main()
