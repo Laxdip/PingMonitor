@@ -212,4 +212,87 @@ class PingMonitor:
             self.is_monitoring = False
             self.display_final_report()
             self.save_log()
+
+    def single_ping(self, host, count=4):
+        """
+        Send limited number of pings
+        """
+        print(f"\n{Fore.GREEN}📡 Sending {count} ping(s) to {host}{Style.RESET_ALL}\n")
+        
+        for i in range(count):
+            result = self.ping_host(host)
+            self.results.append(result)
+            self.update_statistics(result)
+            self.display_result(result)
+            time.sleep(1)
+        
+        self.display_final_report()
     
+    def monitor_multiple_hosts(self, hosts_file, interval=5):
+        """
+        Monitor multiple hosts from a file
+        """
+        try:
+            with open(hosts_file, 'r') as f:
+                hosts = [line.strip() for line in f if line.strip() and not line.startswith('#')]
+            
+            print(f"\n{Fore.GREEN}🚀 Monitoring {len(hosts)} hosts from {hosts_file}{Style.RESET_ALL}")
+            
+            while True:
+                for host in hosts:
+                    result = self.ping_host(host)
+                    self.results.append(result)
+                    self.update_statistics(result)
+                    self.display_result(result)
+                
+                print(f"{Fore.CYAN}{'-'*60}{Style.RESET_ALL}")
+                time.sleep(interval)
+                
+        except KeyboardInterrupt:
+            self.display_final_report()
+            self.save_log()
+        except FileNotFoundError:
+            print(f"{Fore.RED}✗ File {hosts_file} not found!{Style.RESET_ALL}")
+    
+    def display_final_report(self):
+        """Display final report after monitoring"""
+        print(f"\n{Fore.CYAN}{'='*60}")
+        print(f"{Fore.GREEN}📋 FINAL MONITORING REPORT")
+        print(f"{Fore.CYAN}{'='*60}")
+        
+        self.display_statistics()
+        
+        # Uptime calculation
+        if self.stats['sent'] > 0:
+            uptime = (self.stats['received'] / self.stats['sent']) * 100
+            print(f"{Fore.WHITE}📈 Uptime: {uptime:.2f}%")
+        
+        print(f"{Fore.CYAN}{'='*60}{Style.RESET_ALL}")
+    
+    def set_alert_threshold(self, threshold):
+        """Set custom alert threshold"""
+        self.alert_threshold = threshold
+        print(f"{Fore.GREEN}✓ Alert threshold set to {threshold}ms{Style.RESET_ALL}")
+    
+    def export_csv(self, filename="ping_report.csv"):
+        """Export results to CSV"""
+        try:
+            import csv
+            with open(filename, 'w', newline='') as f:
+                writer = csv.writer(f)
+                writer.writerow(['Timestamp', 'Host', 'Success', 'RTT(ms)', 'Error'])
+                
+                for result in self.results:
+                    writer.writerow([
+                        result['timestamp'],
+                        result['host'],
+                        result['success'],
+                        result['rtt'] if result['rtt'] else 'N/A',
+                        result.get('error', '')
+                    ])
+            
+            print(f"{Fore.GREEN}✓ Report exported to {filename}{Style.RESET_ALL}")
+        except Exception as e:
+            print(f"{Fore.RED}✗ Export failed: {e}{Style.RESET_ALL}")
+
+
