@@ -75,6 +75,8 @@ python ping_monitor.py google.com --csv report.csv --json summary.json
 | `--csv` | Auto-export results to CSV on exit | — |
 | `--json` | Auto-export summary to JSON on exit | — |
 
+<img src="screenshots/help.png" width="500"/>
+
 ---
 
 ## Hosts File Format
