@@ -41,6 +41,7 @@ pip install pythonping colorama
 ```bash
 python ping_monitor.py
 ```
+<img src="screenshots/menu.png" width="600"/>
 
 ### Command-line (non-interactive)
 
