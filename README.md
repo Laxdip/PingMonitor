@@ -81,7 +81,7 @@ python ping_monitor.py google.com --csv report.csv --json summary.json
 ## Output
 
 **Continuous monitor live RTT, alerts, statistics and heatmap:**
-<img src="screenshots/monitor.PNG" width="700"/>
+<img src="screenshots/monitor.png" width="700"/>
 
 ## Hosts File Format
 
