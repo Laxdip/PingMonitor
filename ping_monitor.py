@@ -2,7 +2,7 @@
 """
 ================================================================================
   ADVANCED PING MONITOR - Pro Network Diagnostics Tool
-  Author  : Parshaa
+  Author  : Prasad
   Version : 2.0
   License : MIT
 ================================================================================
