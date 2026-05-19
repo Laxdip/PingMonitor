@@ -1,6 +1,6 @@
 # Advanced Ping Monitor
 
-**Professional network diagnostics tool**
+> Professional network diagnostics tool
 
 ---
 
