@@ -30,7 +30,7 @@ Install dependencies:
 pip install pythonping colorama
 ```
 
-> On Linux/macOS, ICMP ping requires root. Run with `sudo` or the tool will automatically fall back to TCP latency.
+> On Linux/macOS, ICMP ping requires root. Run with `sudo` or the tool will automatically fall back to TCP latency...
 
 ---
 
@@ -139,4 +139,4 @@ Prasad
 
 ## License
 
-MIT License — free to use, modify, and distribute.
+MIT License
